@@ -3,14 +3,6 @@
 .source "StaticLayout.java"
 
 
-# annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Landroid/text/StaticLayout$Injector;
-    }
-.end annotation
-
-
 # static fields
 .field private static final CHAR_COLON:C = ':'
 

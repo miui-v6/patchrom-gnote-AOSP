@@ -19,7 +19,7 @@ local-modified-jars :=
 # All apks from MIUI
 local-miui-removed-apps := SettingsProvider Stk Bluetooth MediaProvider
 
-local-miui-modified-apps := Settings Mms ThemeManager
+local-miui-modified-apps := Settings Phone Mms ThemeManager
 
 include phoneapps.mk
 
