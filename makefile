@@ -5,11 +5,11 @@
 # The original zip file, MUST be specified by each product
 local-zip-file     := stockrom.zip
 
-# the location for local-ota to save target-file
-local-previous-target-dir := ~/workspace/ota_base/gnote
-
 # The output zip file of MIUI rom, the default is porting_miui.zip if not specified
 local-out-zip-file := MIUI_gnote.zip
+
+# the location for local-ota to save target-file
+local-previous-target-dir := ~/workspace/ota_base/gnote
 
 # All apps from original ZIP, but has smali files chanded
 local-modified-apps :=
@@ -19,7 +19,7 @@ local-modified-jars :=
 # All apks from MIUI
 local-miui-removed-apps := SettingsProvider Stk Bluetooth MediaProvider
 
-local-miui-modified-apps := Settings ThemeManager
+local-miui-modified-apps := Settings Mms ThemeManager
 
 include phoneapps.mk
 
@@ -43,6 +43,7 @@ local-pre-zip-misc:
 	cp other/boot.img $(ZIP_DIR)/boot.img
 	cp other/spn-conf.xml $(ZIP_DIR)/system/etc/spn-conf.xml
 	cp other/build.prop $(ZIP_DIR)/system/build.prop
+	rm -rf $(pre_install_data_packages)
 	for apk in $(ZIP_DIR)/data/media/preinstall_apps/*.apk; do\
 		$(AAPT) d --values resources $$apk | grep 'id=127 packageCount' | sed -e "s/^.*name=//" >> $(pre_install_data_packages);\
 	done
@@ -67,9 +68,3 @@ out/framework2.jar : out/framework.jar
 	adb remount
 	adb push $<.signed /system/app/$*
 	adb shell chmod 644 /system/app/$*
-
-local-rom-zip := MIUI_gnote.zip
-local-put-to-phone:
-	adb shell rm /sdcard/$(local-rom-zip)
-	adb push out/$(local-rom-zip) /sdcard/
-	adb reboot recovery
