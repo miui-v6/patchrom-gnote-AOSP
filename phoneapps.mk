@@ -1,9 +1,9 @@
 local-phone-apps = ApplicationsProvider \
                    BackupRestoreConfirmation \
-                   Bluetooth \
                    CertInstaller \
                    DefaultContainerService \
                    DrmProvider \
+                   FaceLock \
                    Galaxy4 \
                    GalaxyNoteSettings \
                    Gallery2 \
@@ -17,6 +17,7 @@ local-phone-apps = ApplicationsProvider \
                    MusicFX \
                    NoiseField \
                    PhaseBeam \
+                   Phonesky \
                    PicoTts \
                    SamsungServiceMode \
                    SharedStorageBackup \
