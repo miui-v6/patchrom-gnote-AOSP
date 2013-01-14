@@ -12,7 +12,7 @@ local-out-zip-file := MIUI_gnote.zip
 local-previous-target-dir := ~/workspace/ota_base/gnote
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps := GalaxyNoteSettings
+local-modified-apps := GalaxyNoteSettings Gallery2
 
 local-modified-jars :=
 
@@ -41,6 +41,8 @@ pre_install_data_packages := $(TMP_DIR)/pre_install_apk_pkgname.txt
 local-pre-zip-misc:
 	@echo Update boot image
 	cp other/boot.img $(ZIP_DIR)/boot.img
+	@echo Add Cusettings
+	cp other/Cusettings.apk $(ZIP_DIR)/system/app/Cusettings.apk
 	cp other/spn-conf.xml $(ZIP_DIR)/system/etc/spn-conf.xml
 	cp other/build.prop $(ZIP_DIR)/system/build.prop
 	rm -rf $(pre_install_data_packages)
@@ -49,6 +51,7 @@ local-pre-zip-misc:
 	done
 	more $(pre_install_data_packages) | wc -l > $(ZIP_DIR)/system/etc/enforcecopyinglibpackages.txt
 	more $(pre_install_data_packages) >> $(ZIP_DIR)/system/etc/enforcecopyinglibpackages.txt
+	$(TOOL_DIR)/gen_res_conf.sh other/res_overlay_conf.txt $(ZIP_DIR)/system/app $(ZIP_DIR)/system/etc
 
 out/framework2.jar : out/framework.jar
 
@@ -62,7 +65,6 @@ out/framework2.jar : out/framework.jar
 	#adb reboot
 
 %.sign-plat : out/%
-#%.sign-plat : /home/gexudong/libra.jbmiui/out/target/product/maguro/system/app/%
 	java -jar $(TOOL_DIR)/signapk.jar $(PORT_ROOT)/build/security/platform.x509.pem $(PORT_ROOT)/build/security/platform.pk8  $< $<.signed
 	@echo push -- to --- phone
 	adb remount
