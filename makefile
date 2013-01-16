@@ -12,7 +12,7 @@ local-out-zip-file := MIUI_gnote.zip
 local-previous-target-dir := ~/workspace/ota_base/gnote
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps := GalaxyNoteSettings Gallery2
+local-modified-apps := GalaxyNoteSettings
 
 local-modified-jars :=
 
