@@ -7,6 +7,7 @@
 XMLMERGYTOOL=$PORT_ROOT/tools/ResValuesModify/jar/ResValuesModify
 GIT_APPLY=$PORT_ROOT/tools/git.apply
 
+
 curdir=`pwd`
 
 
@@ -48,4 +49,15 @@ if [ $1 = "MiuiHome" ];then
     done
 
 	$XMLMERGYTOOL $1/res/values $2/res/values
+    $XMLMERGYTOOL $1/res/values-xhdpi $2/res/values-xhdpi
+fi
+
+if [ $1 = "Music" ];then
+    mkdir -p $1
+    mkdir -p $2/res/raw-xhdpi/
+	cp $1/res/raw-xhdpi/* $2/res/raw-xhdpi/
+fi
+
+if [ $1 = "SoundRecorder" ];then
+    $XMLMERGYTOOL $1/res/values-xhdpi $2/res/values-xhdpi
 fi

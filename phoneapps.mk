@@ -1,5 +1,6 @@
 local-phone-apps = ApplicationsProvider \
                    BackupRestoreConfirmation \
+		   Bluetooth \
                    CertInstaller \
                    DefaultContainerService \
                    DrmProvider \
@@ -11,6 +12,7 @@ local-phone-apps = ApplicationsProvider \
                    HTMLViewer \
                    InputDevices \
                    KeyChain \
+		   LatinIME \
                    LiveWallpapersPicker \
                    MagicSmokeWallpapers \
                    MediaProvider \

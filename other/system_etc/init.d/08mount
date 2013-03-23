@@ -1,0 +1,7 @@
+#!/system/bin/sh
+#
+# Ext4 tweak
+
+#mount -o remount,ro,noauto_da_alloc /system /system
+#mount -o remount,noatime,noauto_da_alloc,nosuid,nodev,nodiratime,barrier=0,nobh /data /data
+#mount -o remount,noatime,noauto_da_alloc,nosuid,nodev,nodiratime,barrier=0,nobh /cache /cache

@@ -1,0 +1,18 @@
+#!/system/bin/sh
+#
+# thor2002ro epen config 2k
+# warning: keep the epen away from the device or docked when running this
+
+# 0:Left hand, 1:Right Hand
+HAND=1
+# offsets
+OFFSETX=0
+OFFSETY=0
+
+echo $HAND > /sys/class/sec/sec_epen/epen_hand
+echo $OFFSETX > /sys/class/sec/sec_epen/epen_offsetx
+echo $OFFSETY > /sys/class/sec/sec_epen/epen_offsety
+
+echo 1 > /sys/class/sec/sec_epen/epen_reset
+
+exit 0

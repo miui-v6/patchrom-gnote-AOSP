@@ -1,27 +1,24 @@
-From 87a6cd024767c22a4a272fc2404a351b3e0450ee Mon Sep 17 00:00:00 2001
+From 87572159a8deac35fb0890984c33edc7571326dc Mon Sep 17 00:00:00 2001
 From: ymdzq <233900743@qq.com>
-Date: Thu, 31 Jan 2013 21:21:43 +0800
+Date: Sat, 16 Mar 2013 11:05:09 +0800
 Subject: [PATCH] Patch for fix availableInternalMemory
 
 ---
- Settings/smali/com/android/settings/MiuiDeviceInfoSettings.smali |    6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ Settings/smali/com/android/settings/MiuiDeviceInfoSettings.smali |    3 ---
+ 1 file changed, 3 deletions(-)
 
 --- a/Settings/smali/com/android/settings/MiuiDeviceInfoSettings.smali
 +++ b/Settings/smali/com/android/settings/MiuiDeviceInfoSettings.smali
-@@ -434,11 +434,7 @@
-     :cond_0
-     sget-boolean v29, Lmiui/os/Build;->IS_MITWO:Z
+@@ -234,9 +234,6 @@
+     iget-wide v1, v11, Lcom/android/settings/MiuiDeviceInfoSettings$SDCardInfo;->free:J
  
--    if-nez v29, :cond_1
+     .local v1, availableSize:J
+-    sget-boolean v11, Lmiui/os/Build;->IS_XIAOMI:Z
 -
--    sget-boolean v29, Lmiui/os/Build;->IS_NEXUS_S:Z
--
--    if-eqz v29, :cond_2
-+    if-nez v29, :cond_2
+-    if-eqz v11, :cond_0
  
-     :cond_1
      invoke-static {}, Landroid/os/Environment;->getDataDirectory()Ljava/io/File;
+ 
 -- 
 1.7.10.4
 

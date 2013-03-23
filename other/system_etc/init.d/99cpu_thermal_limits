@@ -1,0 +1,15 @@
+#!/system/bin/sh
+#
+# thor2002ro cpu thermal config 2k
+# warning: don't blame me changing the thease and damage your phone
+
+#values are in celsius
+#first throttle is at 800mhz
+#second throttle is at 200mhz
+start_1st_throttle=75
+start_2nd_throttle=103
+start_mem_throttle=85
+
+echo $start_1st_throttle $start_2nd_throttle $start_mem_throttle > /sys/devices/platform/s5p-tmu/tmu_thermal
+
+exit 0

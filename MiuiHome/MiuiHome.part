@@ -1,6 +1,6 @@
-From 712b86ca60c016bdd0747495a605a0068c93deb1 Mon Sep 17 00:00:00 2001
+From 7a375b3440c7164916f016fe1661e967ead9d2f1 Mon Sep 17 00:00:00 2001
 From: ymdzq <233900743@qq.com>
-Date: Thu, 17 Jan 2013 20:52:16 +0800
+Date: Sat, 16 Mar 2013 11:01:29 +0800
 Subject: [PATCH] add more launcher layouts
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH] add more launcher layouts
 
 --- a/MiuiHome/res/values/arrays.xml
 +++ b/MiuiHome/res/values/arrays.xml
-@@ -53,10 +53,20 @@
+@@ -60,10 +60,20 @@
      <string-array name="cell_layout_size_entries">
          <item>4x4</item>
          <item>4x5</item>
