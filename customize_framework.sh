@@ -18,8 +18,10 @@ then
 
     # move some smali to create a separate $SEP_FRAME.jar
     # including: smali/miui smali/android/widget
-	#mkdir -p "$BUILD_OUT/$SEP_FRAME/smali"
+	mkdir -p "$BUILD_OUT/$SEP_FRAME/smali"
     #rm -rf $BUILD_OUT/$SEP_FRAME/smali/miui
+	mkdir -p "$BUILD_OUT/$SEP_FRAME/smali/android"
+    mv "$BUILD_OUT/framework/smali/android/widget" "$BUILD_OUT/$SEP_FRAME/smali/android/"
 	#mv "$BUILD_OUT/framework/smali/miui" "$BUILD_OUT/$SEP_FRAME/smali"
 fi
 
@@ -32,5 +34,7 @@ then
             rm -rf "$file"
     done
 
+	mv "$BUILD_OUT/$SEP_FRAME/smali/android/widget/"  "$BUILD_OUT/framework2/smali/android/widget"
 	#mv "$BUILD_OUT/$SEP_FRAME/smali/miui/"  "$BUILD_OUT/framework2/smali/miui"
+	rm -rf $BUILD_OUT/$SEP_FRAME
 fi

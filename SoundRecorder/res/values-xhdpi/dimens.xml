@@ -2,7 +2,7 @@
 <resources>
     <dimen name="time_calculator_padding_top">35.0dip</dimen>
     <dimen name="wheel_margin_horizontal">37.0dip</dimen>
-    <dimen name="wheel_margin_left">72.0dip</dimen>
+    <dimen name="wheel_margin_left">73.5dip</dimen>
     <dimen name="wheel_small_margin_horizontal">23.0dip</dimen>
     <dimen name="file_name_layout_margin_left">62.0dip</dimen>
     <dimen name="file_name_layout_margin_top">44.0dip</dimen>

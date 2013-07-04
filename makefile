@@ -17,9 +17,13 @@ local-modified-apps := GalaxyNoteSettings Gallery2
 local-modified-jars :=
 
 # All apks from MIUI
-local-miui-removed-apps := MediaProvider Stk
+local-miui-removed-apps := Bluetooth MediaProvider Stk
 
-local-miui-modified-apps := MiuiHome Settings Phone Mms ThemeManager Music Backup DownloadProviderUi Notes PackageInstaller Provision SoundRecorder
+local-miui-modified-apps := MiuiHome Settings Phone Mms ThemeManager Music Backup Browser DownloadProviderUi MiuiCompass Notes PackageInstaller Provision SoundRecorder
+
+# Config density for co-developers to use the aaps with HDPI or XHDPI resource,
+# Default configrations are HDPI for ics branch and XHDPI for jellybean branch
+local-density := XHDPI
 
 include phoneapps.mk
 

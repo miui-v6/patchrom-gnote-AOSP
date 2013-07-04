@@ -12,16 +12,6 @@ curdir=`pwd`
 
 
 if [ $1 = "Settings" ];then
-    cp $1/*.part out/
-    cd out
-    $GIT_APPLY Settings.part
-    cd ..
-    for file in `find $2 -name *.rej`
-    do
-	echo "Fatal error: Settings patch fail"
-        exit 1
-    done
-
 	$XMLMERGYTOOL $1/res/values $2/res/values
 fi
 
@@ -53,9 +43,11 @@ if [ $1 = "MiuiHome" ];then
 fi
 
 if [ $1 = "Music" ];then
-    mkdir -p $1
-    mkdir -p $2/res/raw-xhdpi/
-	cp $1/res/raw-xhdpi/* $2/res/raw-xhdpi/
+#    mkdir -p $1
+#    mkdir -p $2/res/raw-xhdpi/
+#	cp $1/res/raw-xhdpi/* $2/res/raw-xhdpi/
+#
+    $XMLMERGYTOOL $1/res/values-xhdpi $2/res/values-xhdpi
 fi
 
 if [ $1 = "SoundRecorder" ];then
