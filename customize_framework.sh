@@ -16,6 +16,8 @@ then
             rm -rf "$file"
     done
 
+	rm -rf "$BUILD_OUT/framework/smali/com/google/android/mms"
+
     # move some smali to create a separate $SEP_FRAME.jar
     # including: smali/miui smali/android/widget
 	mkdir -p "$BUILD_OUT/$SEP_FRAME/smali"
@@ -27,6 +29,17 @@ fi
 
 if [ $2 = "$BUILD_OUT/framework2" ]
 then
+    # apply framework2.part on framework2.jar.out
+    cp -f other/framework2.part out/
+    cd out
+    $PORT_ROOT/tools/git.apply framework2.part
+    cd ..
+    for file3 in `find $2 -name *.rej`
+    do
+	echo "Fatal error: framework2 patch fail"
+        exit 1
+    done
+
     # remove all files at out/framework1 those exist in framework.jar.out
     for file2 in `find framework.jar.out -name *.smali`; do
             file=${file2/framework.jar.out/$BUILD_OUT\/framework2}
@@ -34,6 +47,7 @@ then
             rm -rf "$file"
     done
 
+	cp -rf "$BUILD_OUT/framework_miui/smali/com/google/android/mms" "$BUILD_OUT/framework2/smali/com/google/android"
 	mv "$BUILD_OUT/$SEP_FRAME/smali/android/widget/"  "$BUILD_OUT/framework2/smali/android/widget"
 	#mv "$BUILD_OUT/$SEP_FRAME/smali/miui/"  "$BUILD_OUT/framework2/smali/miui"
 	rm -rf $BUILD_OUT/$SEP_FRAME

@@ -1,7 +1,13 @@
-version: 1.4.3
+version: 1.5.2
 apkFileName: GalaxyNoteSettings.apk
 isFrameworkApk: false
 usesFramework:
   ids:
   - 1
-  - 6
+sdkInfo:
+  minSdkVersion: '16'
+  targetSdkVersion: '16'
+packageInfo:
+  cur_package: com.cyanogenmod.settings.device
+  orig_package: com.cyanogenmod.settings.device
+compressionType: false

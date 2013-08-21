@@ -4486,57 +4486,58 @@
     .prologue
     const/4 v4, 0x0
 
-    .line 3982
     iget v1, p0, Landroid/view/ViewGroup;->mChildrenCount:I
 
-    .line 3983
     .local v1, count:I
     if-gtz v1, :cond_1
 
-    .line 3994
     :cond_0
+    :goto_miui_0
     return-void
 
-    .line 3987
     :cond_1
     iget-object v0, p0, Landroid/view/ViewGroup;->mChildren:[Landroid/view/View;
 
-    .line 3988
     .local v0, children:[Landroid/view/View;
     const/4 v3, 0x0
 
     iput v3, p0, Landroid/view/ViewGroup;->mChildrenCount:I
 
-    .line 3990
     add-int/lit8 v2, v1, -0x1
 
     .local v2, i:I
     :goto_0
-    if-ltz v2, :cond_0
+    if-ltz v2, :cond_miui_0
 
-    .line 3991
     aget-object v3, v0, v2
 
     iput-object v4, v3, Landroid/view/View;->mParent:Landroid/view/ViewParent;
 
-    .line 3992
     aput-object v4, v0, v2
 
-    .line 3990
     add-int/lit8 v2, v2, -0x1
 
     goto :goto_0
+
+    :cond_miui_0
+    iget-object v3, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v3}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+
+    goto :goto_miui_0
 .end method
 
 .method protected detachViewFromParent(I)V
-    .locals 0
+    .locals 1
     .parameter "index"
 
     .prologue
-    .line 3947
     invoke-direct {p0, p1}, Landroid/view/ViewGroup;->removeFromArray(I)V
 
-    .line 3948
+    iget-object v0, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v0}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+
     return-void
 .end method
 
@@ -4545,27 +4546,31 @@
     .parameter "child"
 
     .prologue
-    .line 3929
     invoke-virtual {p0, p1}, Landroid/view/ViewGroup;->indexOfChild(Landroid/view/View;)I
 
     move-result v0
 
     invoke-direct {p0, v0}, Landroid/view/ViewGroup;->removeFromArray(I)V
 
-    .line 3930
+    iget-object v0, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v0}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+
     return-void
 .end method
 
 .method protected detachViewsFromParent(II)V
-    .locals 0
+    .locals 1
     .parameter "start"
     .parameter "count"
 
     .prologue
-    .line 3966
     invoke-direct {p0, p1, p2}, Landroid/view/ViewGroup;->removeFromArray(II)V
 
-    .line 3967
+    iget-object v0, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v0}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+
     return-void
 .end method
 

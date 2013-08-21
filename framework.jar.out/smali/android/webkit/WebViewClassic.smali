@@ -17722,6 +17722,15 @@
     goto :goto_0
 .end method
 
+.method public isHitSelectionHandle()Z
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public isPaused()Z
     .locals 1
 
@@ -17882,6 +17891,60 @@
     const/4 v5, 0x0
 
     goto :goto_0
+.end method
+
+.method public checkIfReadModeAvailable()V
+    .locals 3
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
+    .prologue
+    iget-object v0, p0, Landroid/webkit/WebViewClassic;->mWebViewCore:Landroid/webkit/WebViewCore;
+
+    const/16 v1, 0x1392
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, v1, v2}, Landroid/webkit/WebViewCore;->sendMessage(II)V
+
+    return-void
+.end method
+
+.method public checkIfReadModeAvailable(Z)V
+    .locals 3
+    .parameter "inSession"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
+    .prologue
+    iget-object v1, p0, Landroid/webkit/WebViewClassic;->mWebViewCore:Landroid/webkit/WebViewCore;
+
+    const/16 v2, 0x1392
+
+    if-eqz p1, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    invoke-virtual {v1, v2, v0}, Landroid/webkit/WebViewCore;->sendMessage(II)V
+
+    return-void
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public isSelectingText()Z
+    .locals 1
+
+    .prologue
+    iget-boolean v0, p0, Landroid/webkit/WebViewClassic;->mSelectingText:Z
+
+    return v0
 .end method
 
 .method public loadData(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
@@ -23627,9 +23690,6 @@
 
 .method public sendOurVisibleRect()Landroid/graphics/Rect;
     .locals 4
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_ACCESS:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
 
     .prologue
     const/16 v3, 0x6b
@@ -24897,6 +24957,37 @@
     return-void
 .end method
 
+.method public setProxy(Ljava/lang/String;I)V
+    .locals 3
+    .parameter "host"
+    .parameter "port"
+
+    .prologue
+    const/4 v2, 0x0
+
+    const/16 v1, 0xc1
+
+    if-eqz p1, :cond_0
+
+    if-nez p2, :cond_1
+
+    :cond_0
+    invoke-static {v1, v2}, Landroid/webkit/WebViewCore;->sendStaticMessage(ILjava/lang/Object;)V
+
+    :goto_0
+    return-void
+
+    :cond_1
+    new-instance v0, Landroid/net/ProxyProperties;
+
+    invoke-direct {v0, p1, p2, v2}, Landroid/net/ProxyProperties;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+
+    .local v0, pp:Landroid/net/ProxyProperties;
+    invoke-static {v1, v0}, Landroid/webkit/WebViewCore;->sendStaticMessage(ILjava/lang/Object;)V
+
+    goto :goto_0
+.end method
+
 .method public setScrollBarStyle(I)V
     .locals 1
     .parameter "style"
@@ -25865,4 +25956,11 @@
     move-result v0
 
     return v0
+.end method
+
+.method public hideFloatView()V
+    .locals 0
+
+    .prologue
+    return-void
 .end method

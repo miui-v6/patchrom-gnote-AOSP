@@ -7,15 +7,43 @@
 XMLMERGYTOOL=$PORT_ROOT/tools/ResValuesModify/jar/ResValuesModify
 GIT_APPLY=$PORT_ROOT/tools/git.apply
 
-
 curdir=`pwd`
 
+function appendPart() {
+    for file in `find $1/smali -name *.part`
+    do
+		filepath=`dirname $file`
+		filename=`basename $file .part`
+		dstfile="out/$filepath/$filename"
+        cat $file >> $dstfile
+    done
+}
 
 if [ $1 = "Settings" ];then
+    cp $1/*.part out/
+    cd out
+    $GIT_APPLY Settings.part
+    cd ..
+    for file in `find $2 -name *.rej`
+    do
+	echo "Fatal error: Settings patch fail"
+        exit 1
+    done
+
 	$XMLMERGYTOOL $1/res/values $2/res/values
 fi
 
 if [ $1 = "Mms" ];then
+    cp $1/*.part out/
+    cd out
+    $GIT_APPLY Mms.part
+    cd ..
+    for file in `find $2 -name *.rej`
+    do
+	echo "Fatal error: Mms patch fail"
+        exit 1
+    done
+
 	$XMLMERGYTOOL $1/res/values $2/res/values
 fi
 
@@ -24,6 +52,16 @@ if [ $1 = "Phone" ];then
 fi
 
 if [ $1 = "ThemeManager" ];then
+#    cp other/ThemeManager.part out/
+#    cd out
+#    $GIT_APPLY ThemeManager.part
+#    cd ..
+#    for file in `find $2 -name *.rej`
+#    do
+#	echo "Fatal error: ThemeManager patch fail"
+#        exit 1
+#    done
+#
     $XMLMERGYTOOL $1/res/values $2/res/values
 fi
 
@@ -37,9 +75,11 @@ if [ $1 = "MiuiHome" ];then
 	echo "Fatal error: MiuiHome patch fail"
         exit 1
     done
+fi
 
-	$XMLMERGYTOOL $1/res/values $2/res/values
-    $XMLMERGYTOOL $1/res/values-xhdpi $2/res/values-xhdpi
+if [ $1 = "MiuiSystemUI" ];then
+    $XMLMERGYTOOL $1/res/values $2/res/values
+    appendPart $1
 fi
 
 if [ $1 = "Music" ];then
@@ -50,6 +90,10 @@ if [ $1 = "Music" ];then
     $XMLMERGYTOOL $1/res/values-xhdpi $2/res/values-xhdpi
 fi
 
-if [ $1 = "SoundRecorder" ];then
+if [ $1 = "Contacts" ];then
+    $XMLMERGYTOOL $1/res/values-xhdpi $2/res/values-xhdpi
+fi
+
+if [ $1 = "DeskClock" ];then
     $XMLMERGYTOOL $1/res/values-xhdpi $2/res/values-xhdpi
 fi

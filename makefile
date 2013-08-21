@@ -12,14 +12,15 @@ local-out-zip-file := MIUI_gnote.zip
 local-previous-target-dir := ~/workspace/ota_base/gnote
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps := GalaxyNoteSettings Gallery2
+#local-modified-apps := GalaxyNoteSettings Gallery2 OriginalSettings
+local-modified-apps :=
 
 local-modified-jars :=
 
 # All apks from MIUI
-local-miui-removed-apps := Bluetooth MediaProvider Stk
+local-miui-removed-apps := MediaProvider Stk
 
-local-miui-modified-apps := MiuiHome Settings Phone Mms ThemeManager Music Backup Browser DownloadProviderUi MiuiCompass Notes PackageInstaller Provision SoundRecorder
+local-miui-modified-apps := MiuiHome Settings Phone Mms ThemeManager MiuiSystemUI Music Backup Browser Contacts DeskClock DownloadProviderUi MiuiCompass Notes PackageInstaller Provision SoundRecorder Transfer XiaomiServiceFramework
 
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
 # Default configrations are HDPI for ics branch and XHDPI for jellybean branch
@@ -45,6 +46,10 @@ pre_install_data_packages := $(TMP_DIR)/pre_install_apk_pkgname.txt
 local-pre-zip-misc:
 	@echo Update boot image
 	cp other/boot.img $(ZIP_DIR)/boot.img
+	@echo Add Stock APK
+	cp other/GalaxyNoteSettings.apk $(ZIP_DIR)/system/app/GalaxyNoteSettings.apk
+	cp other/Gallery2.apk $(ZIP_DIR)/system/app/Gallery2.apk
+	cp other/OriginalSettings.apk $(ZIP_DIR)/system/app/OriginalSettings.apk
 #	@echo Add Cusettings
 #	cp other/Cusettings.apk $(ZIP_DIR)/system/app/Cusettings.apk
 #	@echo Add USB_switcher
@@ -52,10 +57,10 @@ local-pre-zip-misc:
 #	@echo add thor kernel files
 #	cp -rf other/system_etc/* $(ZIP_DIR)/system/etc/
 #	cp -rf other/system_lib/* $(ZIP_DIR)/system/lib/
-	@echo Add OriginalSettings
-	cp other/OriginalSettings.apk $(ZIP_DIR)/system/app/OriginalSettings.apk
-	cp other/platform.xml $(ZIP_DIR)/system/etc/permissions/platform.xml
-	cp other/javax.btobex.jar $(ZIP_DIR)/system/framework/javax.btobex.jar
+#	@echo Add OriginalSettings
+#	cp other/OriginalSettings.apk $(ZIP_DIR)/system/app/OriginalSettings.apk
+#	cp other/platform.xml $(ZIP_DIR)/system/etc/permissions/platform.xml
+#	cp other/javax.btobex.jar $(ZIP_DIR)/system/framework/javax.btobex.jar
 	cp other/Generic.kl $(ZIP_DIR)/system/usr/keylayout/
 	cp other/spn-conf.xml $(ZIP_DIR)/system/etc/spn-conf.xml
 	cp other/build.prop $(ZIP_DIR)/system/build.prop
@@ -65,7 +70,6 @@ local-pre-zip-misc:
 	done
 	more $(pre_install_data_packages) | wc -l > $(ZIP_DIR)/system/etc/enforcecopyinglibpackages.txt
 	more $(pre_install_data_packages) >> $(ZIP_DIR)/system/etc/enforcecopyinglibpackages.txt
-#	$(TOOL_DIR)/gen_res_conf.sh other/res_overlay_conf.txt $(ZIP_DIR)/system/app $(ZIP_DIR)/system/etc
 
 out/framework2.jar : out/framework.jar
 

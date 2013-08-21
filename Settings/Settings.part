@@ -1,0 +1,23 @@
+From 7a3cccf3f5db76e68892ce76ea61c510174f96eb Mon Sep 17 00:00:00 2001
+From: ymdzq <233900743@qq.com>
+Date: Sun, 11 Aug 2013 13:15:51 +0800
+Subject: [PATCH] show the Headsets Settings
+
+---
+ Settings/smali/com/android/settings/MiuiSettings.smali | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/Settings/smali/com/android/settings/MiuiSettings.smali
++++ b/Settings/smali/com/android/settings/MiuiSettings.smali
+@@ -1275,7 +1275,7 @@
+ 
+     sget-boolean v5, Lmiui/os/Build;->IS_XIAOMI:Z
+ 
+-    if-nez v5, :cond_1
++    if-eqz v5, :cond_1
+ 
+     invoke-interface {p1, v1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
+ 
+-- 
+1.8.1.2
+

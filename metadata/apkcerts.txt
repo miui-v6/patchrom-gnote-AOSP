@@ -82,3 +82,4 @@ name="Cusettings.apk" certificate="build/target/product/security/platform.x509.p
 name="USB_switcher.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="FreeThemeManager.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="OriginalSettings.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
+name="baidushurufa_52.apk" certificate="PRESIGNED" private_key=""

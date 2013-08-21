@@ -6,7 +6,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroid/text/util/Linkify$Linkify$LinkSpec;,
+        Landroid/text/util/Linkify$LinkSpec;,
         Landroid/text/util/Linkify$TransformFilter;,
         Landroid/text/util/Linkify$MatchFilter;
     }
